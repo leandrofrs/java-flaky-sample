@@ -17,9 +17,9 @@ public class UserDao {
         userCollection = database.getCollection("users");
     }
 
-    public void createUser(User user) {
-        Document userDocument = new Document("username", user.getUsername())
-                .append("email", user.getEmail());
+    public void createUser(String user) {
+        Document userDocument = new Document("username", user)
+                .append("email", "email");
 
         userCollection.insertOne(userDocument);
     }
