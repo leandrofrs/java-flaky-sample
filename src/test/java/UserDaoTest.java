@@ -6,8 +6,10 @@ import org.bson.Document;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import com.example.User;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.example.UserDao;
+
 
 public class UserDaoTest {
 
