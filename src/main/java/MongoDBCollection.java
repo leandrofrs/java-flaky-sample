@@ -4,7 +4,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-public class UserDao {
+public class MongoDBCollection {
 
     private final MongoClient mongoClient;
     private final MongoDatabase database;
