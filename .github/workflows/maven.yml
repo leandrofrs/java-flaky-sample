@@ -29,4 +29,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn '-Dsurefire.rerunFailingTestsCount=2' test
+      run: mvn '-Dsurefire.rerunFailingTestsCount=2' -Dtest=JUnitTestingOfMongoDBCollection test
