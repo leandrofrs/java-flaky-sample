@@ -4,22 +4,22 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-public class MongoDBCollection {
+public class UserDao {
 
     private final MongoClient mongoClient;
     private final MongoDatabase database;
     private final MongoCollection<Document> userCollection;
 
-    public MongoDBCollection() {
+    public UserDao() {
         // Connect to the local MongoDB instance; you may customize the connection string as needed.
         mongoClient = MongoClients.create("mongodb://localhost:27017");
         database = mongoClient.getDatabase("your_database_name");
         userCollection = database.getCollection("users");
     }
 
-    public void createUser(String user) {
-        Document userDocument = new Document("username", user)
-                .append("email", "email");
+    public void createUser(User user) {
+        Document userDocument = new Document("username", user.getUsername())
+                .append("email", user.getEmail());
 
         userCollection.insertOne(userDocument);
     }
