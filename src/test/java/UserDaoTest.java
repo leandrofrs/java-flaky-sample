@@ -6,6 +6,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class UserDaoTest {
 
