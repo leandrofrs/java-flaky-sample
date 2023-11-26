@@ -19,13 +19,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        maven: [ '3.5.0']
-
-    name: Maven ${{ matrix.maven }} sample
-
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 8
@@ -34,10 +27,11 @@ jobs:
           java-version: '8'
           distribution: 'temurin'
           cache: maven
-      - name: Setup Maven Action
-        uses: s4u/setup-maven-action@< version >
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v.4.5
         with:
-          java-version: 8
-          maven-version: ${{ matrix.maven }}
+          # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0
+          maven-version: 3.5.0
+            
       - name: Build with Maven
         run: mvn test
