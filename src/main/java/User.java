@@ -9,5 +9,11 @@ public class User {
         this.email = email;
     }
 
-    // getters and setters...
+    public getEmail() {
+        return email;
+    }
+    
+    public getUsername() {
+        return username;
+    }
 }
