@@ -1,9 +1,11 @@
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCollection;
 
 public class UserDaoTest {
 
@@ -20,8 +22,8 @@ public class UserDaoTest {
         userCollection = database.getCollection("users");
 
         // Create a UserDao instance with the real dependencies
-        userDao = new UserDao(database);
-}
+        userDao = new UserDao("mongodb://localhost:27017");
+    }
 
     @Test
     public void testCreateUser() {
