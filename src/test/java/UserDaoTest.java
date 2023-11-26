@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import com.mongodb.client.MongoCollection;
 
 public class UserDaoTest {
 
@@ -14,10 +15,10 @@ public class UserDaoTest {
     @Before
     public void setUp() {
         // Mock the MongoDB collection
-        userCollection = mock(MongoCollection.class);
+        //userCollection = mock(MongoCollection.class);
 
         // Mock the UserDao instance with the mocked dependencies
-        userDao = new UserDao("mongodb://localhost:27017", userCollection);
+        userDao = new UserDao("mongodb://localhost:27017");
     }
 
     @Test

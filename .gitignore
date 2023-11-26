@@ -1,1 +1,4 @@
 target
+.DS_Store
+.diffCache
+coverage.diff.log
