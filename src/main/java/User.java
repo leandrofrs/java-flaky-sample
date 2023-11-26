@@ -9,11 +9,11 @@ public class User {
         this.email = email;
     }
 
-    public getEmail() {
+    public String getEmail() {
         return email;
     }
     
-    public getUsername() {
+    public String getUsername() {
         return username;
     }
 }
