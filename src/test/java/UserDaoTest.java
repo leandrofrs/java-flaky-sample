@@ -14,10 +14,11 @@ public class UserDaoTest {
     @BeforeEach
     public void setUp() {
         // Create a mock MongoCollection
-        userCollection = mock(MongoCollection.class);
 
-        // Create a mock MongoDatabase
-        MongoDatabase database = mock(MongoDatabase.class);
+        //create a mongo collection
+        MongoClient mongoClient = MongoClients.create("teste_connection_string");
+        MongoDatabase database = mongoClient.getDatabase("your_database_name");
+        MongoCollection<Document> userCollection = database.getCollection("users");
         when(database.getCollection("users")).thenReturn(userCollection);
 
         // Create a UserDao instance with the mock dependencies
