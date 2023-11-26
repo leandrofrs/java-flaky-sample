@@ -10,7 +10,7 @@ public class UserDao {
     private final MongoDatabase database;
     private final MongoCollection<Document> userCollection;
 
-    public UserDao(Stirng connectionString) {
+    public UserDao(String connectionString) {
         // Connect to the local MongoDB instance; you may customize the connection string as needed.
         mongoClient = MongoClients.create(connectionString);
         database = mongoClient.getDatabase("your_database_name");
