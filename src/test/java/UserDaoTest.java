@@ -1,11 +1,8 @@
 import org.bson.Document;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoCollection;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -14,17 +11,13 @@ public class UserDaoTest {
     private UserDao userDao;
     private MongoCollection<Document> userCollection;
 
-    @BeforeEach
+    @Before
     public void setUp() {
-        // Connect to a real MongoDB instance
-        MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+        // Mock the MongoDB collection
+        userCollection = mock(MongoCollection.class);
 
-        // Get the database and collection
-        MongoDatabase database = mongoClient.getDatabase("your_database_name");
-        userCollection = database.getCollection("users");
-
-        // Create a UserDao instance with the real dependencies
-        userDao = new UserDao("mongodb://localhost:27017");
+        // Mock the UserDao instance with the mocked dependencies
+        userDao = new UserDao("mongodb://localhost:27017", userCollection);
     }
 
     @Test
@@ -40,5 +33,4 @@ public class UserDaoTest {
         // Assert
         verify(userCollection, times(1)).insertOne(expectedUserDocument);
     }
-
 }
