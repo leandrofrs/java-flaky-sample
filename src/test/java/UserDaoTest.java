@@ -4,7 +4,6 @@ import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
 
 public class UserDaoTest {
 
@@ -13,31 +12,16 @@ public class UserDaoTest {
 
     @BeforeEach
     public void setUp() {
-        // Create a mock MongoCollection
+        // Connect to a real MongoDB instance
+        MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
 
-        //create a mongo collection
-        MongoClient mongoClient = MongoClients.create("teste_connection_string");
+        // Get the database and collection
         MongoDatabase database = mongoClient.getDatabase("your_database_name");
-        MongoCollection<Document> userCollection = database.getCollection("users");
-        when(database.getCollection("users")).thenReturn(userCollection);
+        userCollection = database.getCollection("users");
 
-        // Create a UserDao instance with the mock dependencies
+        // Create a UserDao instance with the real dependencies
         userDao = new UserDao(database);
-    }
-
-    @Test
-    public void testCreateUser() {
-        // Arrange
-        User user = new User("john_doe", "john.doe@example.com");
-        Document expectedUserDocument = new Document("username", user.getUsername())
-                .append("email", user.getEmail());
-
-        // Act
-        userDao.createUser(user);
-
-        // Assert
-        verify(userCollection, times(1)).insertOne(expectedUserDocument);
-    }
+}
 
     @Test
     public void testCreateUser() {
